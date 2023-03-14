@@ -38,7 +38,7 @@ with open (csv_path,'r') as csvfile:
     min_c = min(c_p_l)
     i_min = c_p_l.index(min_c) + 1
     month_min = date_col[i_min]
-
+#output function
     def analysis():
         print (f"Financial Analysis")
         print (f"----------------------")

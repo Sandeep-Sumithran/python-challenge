@@ -14,12 +14,13 @@ with open (csv_path,'r') as csvfile:
     county = []
     cand_col = []
 
+    #storing data into lists
     for rows in csvreader:
         v_id.append(rows [0])
         county.append(rows [1])
         cand_col.append(rows[2])
     
-
+    #dictionary to gather candidate data
     dic = {}
     for cand in cand_col:
         if cand in dic:
@@ -28,13 +29,16 @@ with open (csv_path,'r') as csvfile:
         else:
             dic[cand] = 1
     
+    #calc total vtes
     total_v = len(v_id)
 
+    #calc voter %
     elec_res = ''
     for cand in dic:
         elec_res += (cand + ": " + str(round(dic[cand]/total_v*100,3)) + "% " + "(" + str(dic[cand]) + ")\n")
     elec_res= elec_res[:-1]
     
+    #identifying winner
     winner = max(dic, key = dic.get)
 
     #outputs
@@ -54,6 +58,7 @@ with open (csv_path,'r') as csvfile:
     print (f"")
     print (f"----------------------")
 
+    #text file output
     txt_file = os.path.join("Analysis", "PyPoll_Analysis.txt")
 
     with open(txt_file, mode= 'w') as file:
